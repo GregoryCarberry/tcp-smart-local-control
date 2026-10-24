@@ -14,6 +14,6 @@ The original 224-position conversation transcript yielded **64 fenced code/comma
 
 The other **27** blocks were excluded from the public excerpt collection by a conservative filtering pass (sensitive emulator or credential-related commands and miscellaneous output). Exclusion does **not** imply every one is unsafe.
 
-Four original Python source files were recovered separately. Their names are `tcp-smart-memory-probe.py`, `tcp-smart-device-record-probe.py`, `tcp-smart-key-candidate-check.py`, and `tcp-smart-lan-switch-test.py`. They will be uploaded manually by the owner after checking identifiers and correcting the LAN-test naming discrepancy.
+Four original Python source files have now been published in [scripts/original-sanitised](../scripts/original-sanitised/) using device-identifier placeholders. They are historical archival material and have not been revalidated against live devices.
 
 No real device IDs, private local keys or original memory dumps should be committed to the public repository. The raw conversation archive remains private. See the provenance document for limitations.
