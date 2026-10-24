@@ -4,7 +4,7 @@
 
 **Outcome:** **2/2 plugs working through Home Assistant** using local Tuya protocol 3.1 commands. The original TCP Smart app pairing was retained. Completed **24 October 2026**.
 
-> This is a case study of my own devices and environment, **not a turnkey key-recovery toolkit**. The accompanying Python example is a **sanitised, reconstructed demonstration** of the final LAN-control validation — not an unedited copy of the original forensic scripts. No keys, device IDs, MAC addresses, app databases or raw memory dumps are published.
+> This is a case study of my own devices and environment, **not a turnkey key-recovery toolkit**. The accompanying Python example is a **sanitised, reconstructed demonstration** of the final LAN-control validation — not an unedited copy of the original forensic scripts. No real local keys, device IDs, MAC addresses, app databases or raw memory dumps are published. Four original scripts are available in sanitised, historically preserved form.
 
 ## The problem
 
@@ -20,7 +20,7 @@ The first obstacle wasn't connectivity: both plugs were reachable locally. For e
 | Recover candidate local keys without re-pairing | Yes — using an inspectable emulator and targeted runtime diagnostics |
 | Prove encrypted local on/off control | Yes — independently tested on both devices |
 | Preserve original TCP Smart pairing | Yes |
-| Show the original app reflecting an external relay change | Yes — observed for the standing lamp |
+| Show the original app reflecting an external relay change | Yes — observed for the TCP Plug 2 |
 | Integrate with Home Assistant | Yes — both working as LocalTuya switch entities |
 | Configure Tuya Cloud API credentials in Home Assistant | **Not required** |
 | Prove operation with all internet/cloud access blocked | **Not yet tested** |
@@ -39,8 +39,8 @@ flowchart LR
     Phone[Phone / Home Assistant UI] --> HA[Home Assistant on Debian / Docker]
     HA --> LT[LocalTuya]
     LT --> FW[OPNsense / VLAN routing]
-    FW --> A[TCP Smart plug A]
-    FW --> B[TCP Smart plug B]
+    FW --> A[TCP Smart TCP Plug 2]
+    FW --> B[TCP Smart TCP Plug 1]
     style HA fill:#e8f0fe,stroke:#6c8ebf,color:#17202a
 ```
 
@@ -53,7 +53,7 @@ The arrows show the *command path tested in Home Assistant*. The original OEM ap
 3. **Investigate the OEM Android app.** Used ADB to retrieve its installed APK components; confirmed Tuya/ThingClips SDK references to local-key handling. APK inspection alone did not reveal the account's individual device keys.
 4. **Test, then discard unsuccessful approaches.** Investigated app storage and MMKV; tested **Frida** attachment in a rooted Android Studio emulator. Frida consistently terminated the app at attachment, before any instrumentation script ran. The cause was not established.
 5. **Change method.** Used targeted, *read-only* inspection of the **running app's mapped memory inside the rooted emulator**. Searched around known device identifiers for device records, associated 16-character `localKey` candidates with the correct IDs by parsing their **same JSON object**, and saved the results privately. Mere string matches were never treated as proof.
-6. **Validate against physical hardware.** A Python/TinyTuya check issued local commands to each plug and observed their response. On the standing lamp, the script restored its original state and I saw it switch off and back on. The TCP Smart app also reflected the externally initiated state change.
+6. **Validate against physical hardware.** A Python/TinyTuya check issued local commands to each plug and observed their response. On the TCP Plug 2, the script restored its original state and I saw it switch off and back on. The TCP Smart app also reflected the externally initiated state change.
 7. **Integrate into Home Assistant.** Installed **LocalTuya** as a custom integration, skipped Tuya Cloud API account configuration, manually added each device using its own recovered key, selected **protocol 3.1**, and mapped **DPS 1** to a switch. Both plugs worked in HA; the lamp was also tested from my phone.
 
 Detailed notes: [Investigation and failed approaches](docs/investigation.md) · [Home Assistant configuration](docs/home-assistant.md) · [Evidence and remaining tests](docs/validation.md).
@@ -109,6 +109,6 @@ See [Security and redaction checklist](docs/security.md). Do **not** upload real
 - [Source provenance and publication limitations](docs/source-provenance.md): what was recovered, what remains private, and a known mismatch in the original LAN-switch script.
 - [CLI investigation journal](docs/cli-command-journal.md): explanatory documentation including **illustrative** commands; this is distinct from the historical excerpt collection.
 
-**Original Python sources:** Four recovered scripts are held separately for manual publication after review. They are not yet part of the repository. The original LAN-switch script has mismatched device labels and must not be executed without correction and validation.
+**Original Python sources:** Four sanitised original scripts are published in [scripts/original-sanitised](scripts/original-sanitised/). They contain placeholders and are historical artefacts, not ready-to-run tools. The original LAN-switch script's device-label mismatch has been normalised to TCP Plug 1 (the target defined by its device constants). It remains archival and untested after sanitisation.
 
 Only the non-sensitive subset of 64 recovered rendered code/output blocks has been published here. Other historical output and credential-recovery diagnostics remain in a private review package rather than being silently omitted or presented as public-safe.
