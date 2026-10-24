@@ -101,3 +101,14 @@ This sample deliberately avoids hard-coded real device IDs, addresses or keys. F
 See [Security and redaction checklist](docs/security.md). Do **not** upload real keys, cloud credentials, APKs, proprietary app data, RAM dumps, screenshots showing a `local key` field, personal network details, or device identifiers. Only investigate devices/accounts you own or are authorised to test.
 
 **Project record:** initial investigation 20–21 October 2026; Home Assistant integration verified 24 October 2026.
+
+## Recovered original command material (October 2026)
+
+- [Recovered safe CLI excerpts](docs/recovered-cli-safe-excerpts.md): commands copied from the 224-position conversation archive, with private identifiers redacted. These are individual historical snippets, **not** a runnable installation script.
+- [Original Home Assistant Compose service](config/homeassistant/compose.example.yml): deployment YAML retrieved from the conversation.
+- [Source provenance and publication limitations](docs/source-provenance.md): what was recovered, what remains private, and a known mismatch in the original LAN-switch script.
+- [CLI investigation journal](docs/cli-command-journal.md): explanatory documentation including **illustrative** commands; this is distinct from the historical excerpt collection.
+
+**Original Python sources:** Four recovered scripts are held separately for manual publication after review. They are not yet part of the repository. The original LAN-switch script has mismatched device labels and must not be executed without correction and validation.
+
+Only the non-sensitive subset of 64 recovered rendered code/output blocks has been published here. Other historical output and credential-recovery diagnostics remain in a private review package rather than being silently omitted or presented as public-safe.
