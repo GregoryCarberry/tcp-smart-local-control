@@ -4,16 +4,16 @@ The original investigation was recorded in a 224-position shared ChatGPT convers
 
 ## Classification
 
-- `docs/recovered-cli-blocks.md`: intended historical command excerpts, not one runnable shell script.
+- `docs/recovered-cli-safe-excerpts.md`: intended historical command excerpts, not one runnable shell script.
 - `config/homeassistant/compose.example.yml`: original Home Assistant Container service configuration extracted from the conversation.
 - `examples/local_switch_check.py`: separately reconstructed example already in this repository, **not** an original forensic script.
-- The four separately recovered Python files are being reviewed and uploaded manually by the owner. They have not been published by this update.
+- The four recovered Python scripts have been uploaded by the owner under `scripts/original-sanitised/`; device identifiers were replaced by placeholders.
 
 The browser-based archive preserves rendered code, but cannot guarantee the original Markdown fence syntax. Images, attachments and original code file bytes were not all available from the shared page; the Python file bodies were recovered separately.
 
 ## Critical warning about the physical LAN-switch test
 
-The uploaded `tcp-smart-lan-switch-test.py` contains a historical mismatch: its device constants identify the USB hub, while its prose and output messages refer to the standing lamp. Do not run it uncorrected. Confirm the target device and connected equipment before any physical switching tests.
+The uploaded `tcp-smart-lan-switch-test.py` originally had a device-label mismatch. Its public-facing text now consistently says TCP Plug 1, matching its original target constants. This is a documentation correction, not proof of retesting. Redacted placeholders prevent live use as supplied. Confirm the target device and connected equipment before any physical switching tests.
 
 ## Sensitive material
 
