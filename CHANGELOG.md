@@ -2,7 +2,7 @@
 
 ## 2026-10-24 — Home Assistant integration completed
 
-- Standing lamp and USB hub both reported working as LocalTuya switch entities via the Debian Home Assistant Container deployment.
+- TCP Plug 2 and TCP Plug 1 both reported working as LocalTuya switch entities via the Debian Home Assistant Container deployment.
 - DPS 1 selected for the relay; Tuya protocol 3.1; no Tuya cloud API account configured.
 - Original TCP Smart app pairing preserved. Optional cloud-isolation/latency checks left for follow-up.
 
@@ -10,7 +10,7 @@
 
 - Recovered per-device local-key candidates from an inspectable, user-controlled Android emulator after other methods failed.
 - Correlated candidates with the appropriate device records; locally validated encrypted switching for both plugs using Python and TinyTuya.
-- Original OEM app visibly reflected a separate local switch test on the standing lamp.
+- Original OEM app visibly reflected a separate local switch test on the TCP Plug 2.
 
 ## 2026-10-20 — Initial investigation
 
