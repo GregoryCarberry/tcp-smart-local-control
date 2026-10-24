@@ -14,8 +14,8 @@ import sys
 APP = "com.tcp.smart"
 OFFSETS = (54375896, 62105800, 65083424, 65176840)
 DEVICES = {
-    b"<USB_HUB_DEVICE_ID>": "USB hub (.100)",
-    b"<STANDING_LAMP_DEVICE_ID>": "Standing lamp (.101)",
+    b"<TCP_PLUG_1_DEVICE_ID>": "TCP Plug 1 (.100)",
+    b"<TCP_PLUG_2_DEVICE_ID>": "TCP Plug 2 (.101)",
 }
 JSON_FIELD = re.compile(rb'"localKey"\s*:\s*"([^"\x00]{1,128})"')
 
