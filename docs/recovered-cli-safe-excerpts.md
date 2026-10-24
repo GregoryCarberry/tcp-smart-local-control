@@ -133,7 +133,7 @@ import tinytuya
 
 plugs = [
     ("TCP plug 1", "<DEVICE_ID_REDACTED>", "<PRIVATE_IP>"),
-    ("Standing lamp", "<DEVICE_ID_REDACTED>", "<PRIVATE_IP>")
+    ("TCP Plug 2", "<DEVICE_ID_REDACTED>", "<PRIVATE_IP>")
 ]
 
 for name, device_id, ip in plugs:
@@ -280,10 +280,10 @@ adb -e shell "ls -lh /data/user/0/com.tcp.smart/files/database"
 
 ```PowerShell
 
-# Search for USB hub device ID
+# Search for TCP Plug 1 device ID
 adb -e shell "grep -arlF '<DEVICE_ID_REDACTED>' /data/user/0/com.tcp.smart/files/thingmmkv"
 
-# Search for Standing lamp device ID
+# Search for TCP Plug 2 device ID
 adb -e shell "grep -arlF '<DEVICE_ID_REDACTED>' /data/user/0/com.tcp.smart/files/thingmmkv"
 ```
 
