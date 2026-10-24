@@ -2,7 +2,7 @@
 
 ## Verified by direct observation or user-confirmed testing
 
-| Check | Plug A (standing lamp) | Plug B (USB hub) |
+| Check | TCP Plug 2 (TCP Plug 2) | TCP Plug 1 (TCP Plug 1) |
 | --- | --- | --- |
 | Device reachable over local TCP/6668 | Yes | Yes |
 | Protocol 3.1 `status()` | Yes | Yes |
@@ -12,7 +12,7 @@
 | Original pairing retained | Yes | Yes |
 | Works as LocalTuya switch in Home Assistant | **PASS**, tested from phone | **PASS**, user confirmed |
 
-For plug A, the original TCP Smart app was open during a *separate* TinyTuya test and its icon tracked the relay's off/on transition. **This did not establish whether the vendor app learned the change through LAN, cloud notifications or polling.**
+For TCP Plug 2, the original TCP Smart app was open during a *separate* TinyTuya test and its icon tracked the relay's off/on transition. **This did not establish whether the vendor app learned the change through LAN, cloud notifications or polling.**
 
 ## Open questions — not completion criteria
 
