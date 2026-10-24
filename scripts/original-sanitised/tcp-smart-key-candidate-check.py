@@ -19,8 +19,8 @@ import sys
 
 PACKAGE = "com.tcp.smart"
 DEVICES = {
-    "<USB_HUB_DEVICE_ID>": ("USB hub", "<USB_HUB_IP>"),
-    "<STANDING_LAMP_DEVICE_ID>": ("Standing lamp", "<STANDING_LAMP_IP>"),
+    "<TCP_PLUG_1_DEVICE_ID>": ("TCP Plug 1", "<TCP_PLUG_1_IP>"),
+    "<TCP_PLUG_2_DEVICE_ID>": ("TCP Plug 2", "<TCP_PLUG_2_IP>"),
 }
 PAGE = 4096
 # Smallest previously scanned window containing all 4 JSON localKey matches.
