@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-25 — CI maintenance and full CLI block accounting
+
+- Updated GitHub Actions dependencies to checkout v7 and setup-python v7 for Node.js 24-compatible runners.
+- Reviewed all 27 previously excluded historical blocks; published a disposition register while keeping sensitive raw source material private.
+- Complete accounting now covers all 64 rendered code/output blocks (37 public excerpts, 27 reviewed exclusions).
+- CI success on these latest commits still requires confirmation from GitHub Actions.
+
+
 ## 2026-10-25 — Repository maintenance
 
 - Standardised public device labels as TCP Plug 1 and TCP Plug 2, retaining their original device mapping.
