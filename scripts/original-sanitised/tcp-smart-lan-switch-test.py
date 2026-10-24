@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Validate TCP Smart TCP Plug 1 local key with one reversible LAN toggle.
+"""Validate TCP Plug 1 local key with one reversible LAN toggle.
 
 Reads existing private key JSON from %LOCALAPPDATA%/TCP-Smart/device-local-keys.json.
 Does not print, transmit externally, or save local keys. Uses direct TCP to
-<TCP_PLUG_2_IP> on the LAN with TinyTuya 3.1. Does not contact TCP Plug 2.
+<TCP_PLUG_1_IP> on the LAN with TinyTuya 3.1. Does not contact TCP Plug 2.
 """
 
 import json
