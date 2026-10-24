@@ -1,8 +1,16 @@
 # Changelog
 
+## 2026-10-25 — Repository maintenance
+
+- Standardised public device labels as TCP Plug 1 and TCP Plug 2, retaining their original device mapping.
+- Published sanitised historical Python artefacts and corrected the LAN-test descriptive mismatch to match its original target constants; no live retest claimed.
+- Added read-only CI syntax checks and offline unit tests for the reconstructed example.
+- Removed the obsolete directory placeholder and updated source-provenance documentation.
+
+
 ## 2026-10-24 — Home Assistant integration completed
 
-- TCP Plug 2 and TCP Plug 1 both reported working as LocalTuya switch entities via the Debian Home Assistant Container deployment.
+- Both TCP Plug 1 and TCP Plug 2 reported working as LocalTuya switch entities via the Debian Home Assistant Container deployment.
 - DPS 1 selected for the relay; Tuya protocol 3.1; no Tuya cloud API account configured.
 - Original TCP Smart app pairing preserved. Optional cloud-isolation/latency checks left for follow-up.
 
