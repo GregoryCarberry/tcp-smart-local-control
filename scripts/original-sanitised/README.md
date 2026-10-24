@@ -2,7 +2,7 @@
 
 These four scripts originated during the October 2026 TCP Smart troubleshooting investigation. Their real device identifiers and network addresses have been replaced by placeholders. They have **not** been rerun or verified against the original emulator after sanitisation.
 
-**Naming:** TCP Plug 1 denotes the device formerly attached to a USB hub (original IoT address ending in .100). TCP Plug 2 denotes the device formerly attached to a lamp (original IoT address ending in .101). Neither accessory name is used in the public filenames and scripts. The numeric names are consistent identifiers, not a recommended operating order.
+**Naming:** TCP Plug 1 corresponds to the first original device record (the device with the historical address ending .100); TCP Plug 2 corresponds to the second record (historical address ending .101). Real addresses and device IDs are excluded from this public archive. The numeric names are consistent identifiers, not a recommended operating order.
 
 - `tcp-smart-memory-probe.py`: historical narrow mapped-memory probe
 - `tcp-smart-device-record-probe.py`: historical search around remembered offsets
