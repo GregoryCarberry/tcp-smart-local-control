@@ -2,7 +2,7 @@
 
 ## Verified by direct observation or user-confirmed testing
 
-| Check | TCP Plug 2 (TCP Plug 2) | TCP Plug 1 (TCP Plug 1) |
+| Check | TCP Plug 2 | TCP Plug 1 |
 | --- | --- | --- |
 | Device reachable over local TCP/6668 | Yes | Yes |
 | Protocol 3.1 `status()` | Yes | Yes |
