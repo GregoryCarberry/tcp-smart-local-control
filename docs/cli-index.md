@@ -1,3 +1,7 @@
-# CLI investigation index
+# CLI source inventory
 
-Original commands and scripts from the October 2026 project are being catalogued. The published README currently includes a reconstructed LAN-switching example; original ADB, emulator, Frida and Docker CLI work is distinct.
+The original October 2026 session includes four Python scripts: a bounded emulator-memory probe, a device-record probe, a key-candidate checker and a physical LAN-switch test. The repository's existing local_switch_check.py is a separately reconstructed example.
+
+Other recovered command-line work covered ADB, Android Studio, PowerShell, Frida failures, Wireshark diagnostics and the LocalTuya Docker installation.
+
+The original files need careful sanitisation before public release. No private keys, device identifiers or raw Android app data should be committed.
