@@ -10,9 +10,9 @@ The original 224-position conversation transcript yielded **64 fenced code/comma
 - [CLI investigation journal](cli-command-journal.md) — explanatory examples, some reconstructed and labelled accordingly.
 - [Local switch check example](../examples/local_switch_check.py) — reconstructed, not the original file.
 
-## Still private / for manual review
+## Remaining 27 blocks — reviewed and accounted for
 
-The other **27** blocks were excluded from the public excerpt collection by a conservative filtering pass (sensitive emulator or credential-related commands and miscellaneous output). Exclusion does **not** imply every one is unsafe.
+All **27** remaining blocks have now been reviewed individually in [the disposition register](excluded-blocks-review.md). They remain in the private raw source archive; selected conclusions are documented publicly, without verbatim sensitive commands or trivial terminal outputs.
 
 Four original Python source files have now been published in [scripts/original-sanitised](../scripts/original-sanitised/) using device-identifier placeholders. They are historical archival material and have not been revalidated against live devices.
 
