@@ -11,8 +11,8 @@ import sys
 
 PACKAGE = 'com.tcp.smart'
 DEVICE_IDS = {
-    b'<USB_HUB_DEVICE_ID>': 'USB hub (.100)',
-    b'<STANDING_LAMP_DEVICE_ID>': 'Standing lamp (.101)',
+    b'<TCP_PLUG_1_DEVICE_ID>': 'TCP Plug 1 (.100)',
+    b'<TCP_PLUG_2_DEVICE_ID>': 'TCP Plug 2 (.101)',
 }
 # Previous offsets relative to the start of the Dalvik main heap.
 OFFSETS = (
