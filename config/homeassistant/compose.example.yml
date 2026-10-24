@@ -1,0 +1,13 @@
+# Home Assistant Container — original deployment definition from conversation turn 060
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: ghcr.io/home-assistant/home-assistant:stable
+    restart: unless-stopped
+    stop_grace_period: 60s
+    network_mode: host
+    environment:
+      TZ: Europe/London
+    volumes:
+      - ./config:/config
+      - /etc/localtime:/etc/localtime:ro
