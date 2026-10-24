@@ -111,4 +111,4 @@ See [Security and redaction checklist](docs/security.md). Do **not** upload real
 
 **Original Python sources:** Four sanitised original scripts are published in [scripts/original-sanitised](scripts/original-sanitised/). They contain placeholders and are historical artefacts, not ready-to-run tools. The original LAN-switch script's device-label mismatch has been normalised to TCP Plug 1 (the target defined by its device constants). It remains archival and untested after sanitisation.
 
-Only the non-sensitive subset of 64 recovered rendered code/output blocks has been published here. Other historical output and credential-recovery diagnostics remain in a private review package rather than being silently omitted or presented as public-safe.
+The 37 public historical code/output blocks are in [recovered safe CLI excerpts](docs/recovered-cli-safe-excerpts.md); [the remaining 27 blocks have been reviewed individually](docs/excluded-blocks-review.md) and retained in the private archive. Accounting covers all 64 without publishing sensitive emulator diagnostics or trivial outputs.
