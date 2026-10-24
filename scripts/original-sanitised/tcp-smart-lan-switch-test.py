@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Validate TCP Smart Standing lamp local key with one reversible LAN toggle.
+"""Validate TCP Smart TCP Plug 1 local key with one reversible LAN toggle.
 
 Reads existing private key JSON from %LOCALAPPDATA%/TCP-Smart/device-local-keys.json.
 Does not print, transmit externally, or save local keys. Uses direct TCP to
-<STANDING_LAMP_IP> on the LAN with TinyTuya 3.1. Does not touch USB hub plug.
+<TCP_PLUG_2_IP> on the LAN with TinyTuya 3.1. Does not contact TCP Plug 2.
 """
 
 import json
@@ -18,9 +18,9 @@ except ImportError:
     print("TinyTuya is missing. Install: py -m pip install --user tinytuya")
     sys.exit(2)
 
-DEVICE_NAME = "USB hub"
-EXPECTED_DEVICE_ID = "<USB_HUB_DEVICE_ID>"
-EXPECTED_IP = "<USB_HUB_IP>"
+DEVICE_NAME = "TCP Plug 1"
+EXPECTED_DEVICE_ID = "<TCP_PLUG_1_DEVICE_ID>"
+EXPECTED_IP = "<TCP_PLUG_1_IP>"
 SECRET_PATH = Path(os.environ.get("LOCALAPPDATA", str(Path.home()))) / "TCP-Smart" / "device-local-keys.json"
 
 
@@ -48,17 +48,17 @@ def main():
 
     record = records.get(DEVICE_NAME) if isinstance(records, dict) else None
     if not isinstance(record, dict):
-        print("Standing lamp entry missing in saved JSON; no action taken.")
+        print("TCP Plug 1 entry missing in saved JSON; no action taken.")
         return 2
 
     if (record.get("device_id") != EXPECTED_DEVICE_ID or
             record.get("ip") != EXPECTED_IP or
             str(record.get("protocol")) != "3.1"):
-        print("Unexpected Standing lamp device ID, IP or protocol; no action taken.")
+        print("Unexpected TCP Plug 1 device ID, IP or protocol; no action taken.")
         return 2
     key = record.get("local_key")
     if not isinstance(key, str) or len(key) != 16:
-        print("Standing lamp key is not a 16-character string; no action taken.")
+        print("TCP Plug 1 key is not a 16-character string; no action taken.")
         return 2
 
     device = tinytuya.OutletDevice(
@@ -70,8 +70,8 @@ def main():
     device.set_socketTimeout(3)
     device.set_socketRetryLimit(1)
 
-    print("Direct LAN test: Standing lamp (<STANDING_LAMP_IP>), protocol 3.1")
-    print("USB hub will not be contacted. No keys will be shown.")
+    print("Direct LAN test: TCP Plug 1 (<TCP_PLUG_2_IP>), protocol 3.1")
+    print("TCP Plug 2 will not be contacted. No keys will be shown.")
 
     try:
         original = status_bool(device)
@@ -79,7 +79,7 @@ def main():
         print(f"Could not read initial state ({type(e).__name__}); no switching attempted.")
         return 1
 
-    print(f"Original Standing lamp state: {label(original)}")
+    print(f"Original TCP Plug 1 state: {label(original)}")
     target = not original
     print(f"Attempting {label(target)} for approximately 2 seconds, then restoring {label(original)}...")
 
@@ -107,7 +107,7 @@ def main():
             restored = False
 
     if changed and restored:
-        print("PASS: Standing lamp responded to local encrypted control and was restored.")
+        print("PASS: TCP Plug 1 responded to local encrypted control and was restored.")
         return 0
     if restored:
         print("NOT CONFIRMED: Lamp is in its original state but local switching wasn't verified.")
