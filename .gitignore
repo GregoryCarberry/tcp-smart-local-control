@@ -1,0 +1,45 @@
+# Never commit secrets or original app data
+.env
+.env.*
+!.env.example
+*.key
+*secret*.json
+*local*keys*.json
+*credentials*.json
+*token*.json
+*.pem
+*.p12
+*.pfx
+*.pcap
+*.pcapng
+*.apk
+*.apks
+*.aab
+*.bin
+*.mem
+*.dump
+*.db
+*.sqlite
+*.sqlite3
+*.zip
+*.tar
+*.tar.gz
+*.log
+
+# Private Home Assistant app state/backups
+.storage/
+.secrets.yaml
+secrets.yaml
+home-assistant_v2.db
+.backups/
+
+# Python, editor and system files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
