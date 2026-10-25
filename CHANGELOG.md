@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-25 — Reader-focused editorial pass
+
+- Reworked the README opening into a plain-English explanation of the problem, solution and untested cloud-isolation question.
+- Added a first-time-reader navigation section and definitions of key technical terms.
+- Corrected device labels in the diagram and phone-test narrative.
+- Updated security documentation to distinguish the reconstructed example from the four sanitised historical inspection scripts.
+
+
 ## 2026-10-25 — CI maintenance and full CLI block accounting
 
 - Updated GitHub Actions dependencies to checkout v7 and setup-python v7 for Node.js 24-compatible runners.
