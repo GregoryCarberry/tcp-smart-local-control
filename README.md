@@ -1,10 +1,30 @@
 # Recovering local control of two TCP Smart Wi-Fi plugs
 
-**A real-world troubleshooting case study:** network analysis, Android diagnostics, Python, and Home Assistant — without resetting or re-pairing the original devices.
+Two old Wi-Fi smart plugs. One goal: **control them from Home Assistant without resetting them or losing their existing setup.**
 
-**Outcome:** **2/2 plugs working through Home Assistant** using local Tuya protocol 3.1 commands. The original TCP Smart app pairing was retained. Completed **24 October 2026**.
+What seemed like a simple smart-home project turned into an investigation involving network traffic, an Android test emulator and Python. I eventually recovered the information needed for direct local control and confirmed that **both plugs worked in Home Assistant** while keeping their original TCP Smart app pairing.
 
-> This is a case study of my own devices and environment, **not a turnkey key-recovery toolkit**. The accompanying Python example is a **sanitised, reconstructed demonstration** of the final LAN-control validation — not an unedited copy of the original forensic scripts. No real local keys, device IDs, MAC addresses, app databases or raw memory dumps are published. Four original scripts are available in sanitised, historically preserved form.
+**Result:** 2 out of 2 plugs working, confirmed 24 October 2026. Home Assistant could send commands directly across my local network; I have **not yet tested what happens if internet access is blocked completely**.
+
+> This is a documented investigation of my own equipment, not a ready-made key-recovery guide. The four historical Python scripts are [sanitised archival copies](scripts/original-sanitised/) with private identifiers removed. The [separate example script](examples/local_switch_check.py) is reconstructed and read-only unless switching is explicitly requested.
+
+## Where to start
+
+- **[The investigation](docs/investigation.md):** what I tried, what failed, and what eventually worked.
+- **[Home Assistant integration](docs/home-assistant.md):** how I added both plugs to my existing installation.
+- **[Results and limitations](docs/validation.md):** what I verified and what still needs testing.
+- **[Original sanitised scripts](scripts/original-sanitised/):** historical source files, not plug-and-play tools.
+- **[Command history and evidence index](docs/cli-index.md):** recovered commands, reconstructed examples and source limitations.
+
+## A few terms used below
+
+- **Home Assistant (HA):** open-source software for controlling smart-home devices together.
+- **LAN:** local area network — devices communicating within the home rather than sending every command through a manufacturer's cloud service.
+- **VLAN:** a way to separate groups of devices on the same physical network; my IoT (smart-device) equipment has its own network.
+- **ADB:** Android Debug Bridge, used to inspect and troubleshoot the test Android installation.
+- **OEM app:** the manufacturer's original TCP Smart application.
+- **DPS:** a Tuya device's numbered data point; **DPS 1** was the on/off switch state for these two plugs.
+- **Local key:** a private per-device value needed to authenticate encrypted local commands.
 
 ## The problem
 
@@ -39,8 +59,8 @@ flowchart LR
     Phone[Phone / Home Assistant UI] --> HA[Home Assistant on Debian / Docker]
     HA --> LT[LocalTuya]
     LT --> FW[OPNsense / VLAN routing]
-    FW --> A[TCP Smart TCP Plug 2]
-    FW --> B[TCP Smart TCP Plug 1]
+    FW --> A[TCP Plug 2]
+    FW --> B[TCP Plug 1]
     style HA fill:#e8f0fe,stroke:#6c8ebf,color:#17202a
 ```
 
@@ -54,7 +74,7 @@ The arrows show the *command path tested in Home Assistant*. The original OEM ap
 4. **Test, then discard unsuccessful approaches.** Investigated app storage and MMKV; tested **Frida** attachment in a rooted Android Studio emulator. Frida consistently terminated the app at attachment, before any instrumentation script ran. The cause was not established.
 5. **Change method.** Used targeted, *read-only* inspection of the **running app's mapped memory inside the rooted emulator**. Searched around known device identifiers for device records, associated 16-character `localKey` candidates with the correct IDs by parsing their **same JSON object**, and saved the results privately. Mere string matches were never treated as proof.
 6. **Validate against physical hardware.** A Python/TinyTuya check issued local commands to each plug and observed their response. On the TCP Plug 2, the script restored its original state and I saw it switch off and back on. The TCP Smart app also reflected the externally initiated state change.
-7. **Integrate into Home Assistant.** Installed **LocalTuya** as a custom integration, skipped Tuya Cloud API account configuration, manually added each device using its own recovered key, selected **protocol 3.1**, and mapped **DPS 1** to a switch. Both plugs worked in HA; the lamp was also tested from my phone.
+7. **Integrate into Home Assistant.** Installed **LocalTuya** as a custom integration, skipped Tuya Cloud API account configuration, manually added each device using its own recovered key, selected **protocol 3.1**, and mapped **DPS 1** to a switch. Both plugs worked in HA; TCP Plug 2 was also tested from my phone.
 
 Detailed notes: [Investigation and failed approaches](docs/investigation.md) · [Home Assistant configuration](docs/home-assistant.md) · [Evidence and remaining tests](docs/validation.md).
 
@@ -100,7 +120,7 @@ This sample deliberately avoids hard-coded real device IDs, addresses or keys. F
 
 See [Security and redaction checklist](docs/security.md). Do **not** upload real keys, cloud credentials, APKs, proprietary app data, RAM dumps, screenshots showing a `local key` field, personal network details, or device identifiers. Only investigate devices/accounts you own or are authorised to test.
 
-**Project record:** initial investigation 20–21 October 2026; Home Assistant integration verified 24 October 2026.
+For the source-code provenance, see [Source provenance and limitations](docs/source-provenance.md).\n\n**Project record:** initial investigation 20–21 October 2026; Home Assistant integration verified 24 October 2026.
 
 ## Recovered original command material (October 2026)
 
