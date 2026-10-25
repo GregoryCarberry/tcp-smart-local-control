@@ -20,7 +20,7 @@ This project investigates **personally owned smart plugs** through a user-contro
 
 ## Scope of code in this repo
 
-The included Python example is **reconstructed and sanitised**, with no Android app instrumentation or runtime-dump tools. The investigation document explains the real decisions and findings, including unsuccessful approaches, without pretending that the example is a bit-for-bit copy of the original working scripts.
+The example at [`examples/local_switch_check.py`](../examples/local_switch_check.py) is **reconstructed and sanitised**. In contrast, [`scripts/original-sanitised/`](../scripts/original-sanitised/) contains four original investigation scripts with private device details replaced by placeholders, including Android emulator memory-inspection tools. They are archival evidence, not ready-to-run or recently revalidated utilities. The investigation document explains the real decisions and findings, including unsuccessful approaches, without claiming the reconstructed example was the exact historical script.
 
 ## Before opening a public GitHub repo
 
