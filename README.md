@@ -23,7 +23,7 @@ What seemed like a simple smart-home project turned into an investigation involv
 - **VLAN:** a way to separate groups of devices on the same physical network; my IoT (smart-device) equipment has its own network.
 - **ADB:** Android Debug Bridge, used to inspect and troubleshoot the test Android installation.
 - **OEM app:** the manufacturer's original TCP Smart application.
-- **DPS:** a Tuya device's numbered data point; **DPS 1** was the on/off switch state for these two plugs.
+- **DPS:** a Tuya device's numbered data point; **DPS 1** is the on/off switch state. A later test identified **DPS 2** as the countdown-to-toggle (seconds) on TCP Plug 2.
 - **Local key:** a private per-device value needed to authenticate encrypted local commands.
 
 ## The problem
@@ -108,9 +108,9 @@ This sample deliberately avoids hard-coded real device IDs, addresses or keys. F
 - **No deliberate cloud-blocking test yet.** The LocalTuya commands are sent directly over the LAN, but I have not yet measured behaviour after completely blocking these devices from the internet.
 - **Latency is anecdotal.** Home Assistant subjectively seemed quicker than the original app, but I haven't captured controlled timings; nor did I independently confirm the original app's command path.
 - **Protocol and firmware are device-dependent.** Identical branding does not guarantee other revisions work the same way. Different devices also have different keys.
-- **DPS 2 is not identified.** It reported a numeric value, but I did not assume it represented voltage/current/power and did not configure it as such.
+- **Countdown datapoint tested 28 October 2026.** On TCP Plug 2, DPS 2 reports the OEM countdown-to-toggle in seconds, with 30-second reported steps; a one-minute timer ended with an automatic DPS 1 toggle and DPS 2 resetting to zero. Weekly schedule storage and cloud-offline operation remain untested. See [timestamped evidence](docs/validation.md#countdown-datapoint-experiment--28-october-2026).
 
-## Tools and references
+The countdown investigation also showed that disabling the device in Home Assistant did not release the TinyTuya connection, while temporarily stopping the HA container allowed read-only polling. This is evidence of a local-controller connection conflict, not a proven protocol limitation. HA restoration after testing was advised but has not yet been independently confirmed.\n\n## Tools and references
 
 - [TinyTuya](https://github.com/jasonacox/tinytuya) — direct LAN status/control for Tuya-compatible devices.
 - [LocalTuya](https://github.com/rospogrigio/localtuya) — Home Assistant local integration, optional Tuya cloud account.
