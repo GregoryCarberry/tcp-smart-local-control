@@ -25,7 +25,7 @@ For TCP Plug 2, the original TCP Smart app was open during a *separate* TinyTuya
 
 **Verified on TCP Plug 2 only:** DPS 1 is the relay's Boolean state; **DPS 2 is the OEM app's countdown-to-toggle value, in seconds**. This replaces the earlier “unknown datapoint” status. No claim is made for other firmware or for TCP Plug 1 without testing.
 
-A Windows TinyTuya read-only monitor polled `status()` approximately every 10 seconds while the original TCP Smart Android app controlled the countdown. Observed data (local clock):
+A Windows TinyTuya read-only monitor (private original; [sanitised public adaptation](../examples/monitor_dps.py)) polled `status()` approximately every 10 seconds while the original TCP Smart Android app controlled the countdown. Observed data (local clock):
 
 | Time | DPS 1 | DPS 2 | Event |
 | --- | --- | --- | --- |
