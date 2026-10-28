@@ -107,6 +107,11 @@ python examples/monitor_dps.py --interval 5
 
 This published script is a **sanitised adaptation**, not the original private Windows monitor, which read its credentials from a local JSON file. The original was used in the [28 October countdown experiment](docs/validation.md#countdown-datapoint-experiment--28-october-2026). If another controller (such as Home Assistant LocalTuya) maintains a device connection, status polling may fail; investigate rather than assuming an incorrect key. Do not enter private keys in terminal transcripts or screenshots.
 
+
+### Home Assistant countdown control (28 October 2026)
+
+The LocalTuya Number entity for DPS 2 correctly displays a countdown on TCP Plug 2. A `number.set_value` request of 60 was accepted by Home Assistant but did not change the timer. The `localtuya.set_dp` action writing integer 60 to DPS 2 worked: the displayed value progressed 60 → 30 → 0 and the relay toggled automatically. The cause of the Number write failure is still unknown. A direct write of zero to cancel the timer and a convenient dashboard interface are proposed follow-ups, not completed work. Full observations: [validation notes](docs/validation.md#home-assistant-countdown-control--28-october-2026).
+
 ## What this demonstrates
 
 - Breaking a problem into reachability, status, authentication, control and integration stages.
