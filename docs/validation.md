@@ -46,6 +46,13 @@ The *reported* remaining value stepped by 30 seconds in these observations; the 
 
 **Connection troubleshooting:** Windows could reach plug TCP/6668 (`Test-NetConnection` succeeded), but the monitor initially returned TinyTuya `901 Network Error: Unable to Connect` while Home Assistant's LocalTuya integration was operating the plug. Disabling the individual HA device did not restore TinyTuya reads. Temporarily stopping the HA Docker container restored DPS reads immediately. This strongly implicates competing local controller connections but is not proof of precise root cause. The user was instructed to restart HA and re-enable the disabled plug; **successful restoration was not confirmed in this record**. No pairing, key or network configuration was changed.
 
+
+## Home Assistant countdown control — 28 October 2026
+
+The user added DPS 2 as a LocalTuya Number entity for TCP Plug 2, retaining the existing DPS 1 switch. The entity reflected an OEM-app countdown (60, 30, 0). Home Assistant's number.set_value action for 60 seconds returned success but did not start a timer: the displayed value remained zero. A direct localtuya.set_dp action writing integer 60 to DPS 2 successfully started the timer; Home Assistant showed 60, 30, 0 and the relay toggled at expiry. This establishes direct local countdown control via Home Assistant for this plug.
+
+The cause of the Number entity write failure is unverified; numeric type conversion is a hypothesis, not a confirmed diagnosis. The cancel-by-zero command and dashboard start/cancel controls have not been tested or created. Cloud-free countdown behaviour, weekly scheduling and equivalent behaviour on TCP Plug 1 also remain untested. The user subsequently confirmed Home Assistant was running again and the Standing Lamp entity had been re-enabled.
+
 ## Suggested evidence for eventual screenshots
 
 - HA dashboard with **two working switch entities**, cropped to omit network addresses and other devices.
