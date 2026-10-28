@@ -42,3 +42,7 @@ The device credentials were entered privately through Home Assistant's UI. The o
 - If a future factory reset/re-pair rotates a key, existing HA configuration may need updating.
 - The *command path* was local. A deliberate **internet-block test has not been done**, so do not infer every aspect of the original application or device behaviour is offline-independent.
 - No measured comparison was done for app vs Home Assistant response latency.
+
+### DPS 2 countdown control (28 October 2026)
+
+TCP Plug 2 has DPS 2 configured as a LocalTuya Number entity (minimum 0, maximum 18000, increment 1; restore-last-value and passive-entity options off). It displays OEM countdown changes. Home Assistant's number.set_value with 60 did not start the timer even though the action completed. Direct localtuya.set_dp writing integer 60 to DPS 2 did start it, and the relay toggled after the countdown expired. This was verified by the user. The reason the Number write failed has not been diagnosed. No dashboard script or cancellation-by-zero action has yet been tested. The user confirmed Home Assistant and the Standing Lamp entity were restored after investigation.
