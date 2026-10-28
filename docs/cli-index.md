@@ -9,6 +9,7 @@ The original 224-position conversation transcript yielded **64 fenced code/comma
 - [Source provenance and limitations](source-provenance.md).
 - [CLI investigation journal](cli-command-journal.md) — explanatory examples, some reconstructed and labelled accordingly.
 - [Local switch check example](../examples/local_switch_check.py) — reconstructed, not the original file.
+- [Read-only DPS monitor](../examples/monitor_dps.py) — sanitised adaptation of the private Windows monitor used in the 28 October 2026 countdown experiment; prompts for credentials instead of reading the original private JSON; no device switching.
 
 ## Remaining 27 blocks — reviewed and accounted for
 
