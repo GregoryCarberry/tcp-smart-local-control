@@ -13,6 +13,7 @@ What seemed like a simple smart-home project turned into an investigation involv
 - **[The investigation](docs/investigation.md):** what I tried, what failed, and what eventually worked.
 - **[Home Assistant integration](docs/home-assistant.md):** how I added both plugs to my existing installation.
 - **[Results and limitations](docs/validation.md):** what I verified and what still needs testing.
+- **[Read-only DPS monitor](examples/monitor_dps.py):** safely observe device datapoints such as the countdown timer.
 - **[Original sanitised scripts](scripts/original-sanitised/):** historical source files, not plug-and-play tools.
 - **[Command history and evidence index](docs/cli-index.md):** recovered commands, reconstructed examples and source limitations.
 
@@ -93,6 +94,19 @@ You'll be prompted for the device ID, LAN address and private key. The key is en
 
 This sample deliberately avoids hard-coded real device IDs, addresses or keys. For the actual project, private key material was kept in a local Windows file; it was **not** committed to GitHub.
 
+## Read-only datapoint monitor
+
+The [sanitised countdown-observation monitor](examples/monitor_dps.py) is a separate, **read-only** TinyTuya example. It prompts for the device ID, LAN address, protocol version and local key (hidden input); no identifiers or keys are hard-coded or saved. It polls `status()` every ten seconds by default, printing datapoint values with local timestamps. It has no relay-toggle command.
+
+```bash
+python -m pip install -r requirements.txt
+python examples/monitor_dps.py
+# Optional: poll every five seconds
+python examples/monitor_dps.py --interval 5
+```
+
+This published script is a **sanitised adaptation**, not the original private Windows monitor, which read its credentials from a local JSON file. The original was used in the [28 October countdown experiment](docs/validation.md#countdown-datapoint-experiment--28-october-2026). If another controller (such as Home Assistant LocalTuya) maintains a device connection, status polling may fail; investigate rather than assuming an incorrect key. Do not enter private keys in terminal transcripts or screenshots.
+
 ## What this demonstrates
 
 - Breaking a problem into reachability, status, authentication, control and integration stages.
@@ -110,7 +124,9 @@ This sample deliberately avoids hard-coded real device IDs, addresses or keys. F
 - **Protocol and firmware are device-dependent.** Identical branding does not guarantee other revisions work the same way. Different devices also have different keys.
 - **Countdown datapoint tested 28 October 2026.** On TCP Plug 2, DPS 2 reports the OEM countdown-to-toggle in seconds, with 30-second reported steps; a one-minute timer ended with an automatic DPS 1 toggle and DPS 2 resetting to zero. Weekly schedule storage and cloud-offline operation remain untested. See [timestamped evidence](docs/validation.md#countdown-datapoint-experiment--28-october-2026).
 
-The countdown investigation also showed that disabling the device in Home Assistant did not release the TinyTuya connection, while temporarily stopping the HA container allowed read-only polling. This is evidence of a local-controller connection conflict, not a proven protocol limitation. HA restoration after testing was advised but has not yet been independently confirmed.\n\n## Tools and references
+The countdown investigation also showed that disabling the device in Home Assistant did not release the TinyTuya connection, while temporarily stopping the HA container allowed read-only polling. This is evidence of a local-controller connection conflict, not a proven protocol limitation. HA restoration after testing was advised but has not yet been independently confirmed.
+
+## Tools and references
 
 - [TinyTuya](https://github.com/jasonacox/tinytuya) — direct LAN status/control for Tuya-compatible devices.
 - [LocalTuya](https://github.com/rospogrigio/localtuya) — Home Assistant local integration, optional Tuya cloud account.
